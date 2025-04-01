@@ -6,20 +6,24 @@ const todoList = document.getElementById("todo-list");
 
 let thingsYouNeedToDo = [];
 
-document.addEventListener("StorageLoaded"), () => {
+document.addEventListener("DOMContentLoaded"), () => {
     const savedThingsYouNeedToDo = localStorage.getItem("Things to do");
     if (savedThingsYouNeedToDo){
         thingsYouNeedToDo = JSON.parse(savedThingsYouNeedToDo);
-        thingsYouNeedToDo.forEach((thingsYouNeedToDo) => addThingsYouNeedToDoToStorage(thingsYouNeedToDo));
+        thingsYouNeedToDo.forEach((thingsYouNeedToDo) => addThingsYouNeedToDoToDOM(thingsYouNeedToDo));
             
      }
     };
 
 function saveThingsYouNeedToDo() {
-    localStorage.setItem(JSON.stringify(thingsYouNeedToDo));
+    localStorage.setItem("Things to do", JSON.stringify(thingsYouNeedToDo));
 }
 
-function addThingsYouNeedToDoToStorage(thingsYouNeedToDo){
+function generateId(){
+    return Date.now();
+}
+
+function addThingsYouNeedToDoToDOM(thingsYouNeedToDo){
     const listItem = document.createElement("List item");
     listItem.setAttribute("data-id", thingsYouNeedToDo.id);
 }
